@@ -21,4 +21,17 @@ public class UserBizImpl implements UserBiz {
 		return false;
 	}
 
+	@Override
+	public int login(User user) {
+		// u代表的是这个账号名在文件中的完整信息
+		User u = ud.findByName(user.getName());
+		if (u == null) {
+			return 1;// 账号输入错误
+		}
+		if (!u.getPassWord().equals(user.getPassWord())) {
+			return 2;// 密码输入错误
+		}
+		return 3;
+	}
+
 }
